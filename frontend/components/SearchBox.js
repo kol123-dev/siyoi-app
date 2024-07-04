@@ -8,14 +8,14 @@ import hamburger from '../assets/hamburger.png';
 import SearchIcon from '../assets/search_icon.png';
 import profileImage from '../assets/avatar.png'; // Replace with actual profile image path
 
-const SearchBox = ({ setResults }) => {
+const SearchBox = ({ setResults, title, subtitle, api }) => {
   const navigation = useNavigation();
   const [query, setQuery] = useState("");
   const [drawerVisible, setDrawerVisible] = useState(false);
 
   const fetchResults = async () => {
     try {
-      const response = await fetch(`http://192.168.100.2:3000/search?q=${query}`);
+      const response = await fetch(api.replace('${query}', query));
       
       // Check if response is successful (HTTP status in the range 200-299)
       if (!response.ok) {
@@ -52,6 +52,9 @@ const SearchBox = ({ setResults }) => {
   const toggleDrawer = () => {
     setDrawerVisible(!drawerVisible);
   };
+  const goBack = () => {
+    navigation.goBack(); // Navigate back to the previous screen
+  };
 
   return (
     <>
@@ -60,12 +63,12 @@ const SearchBox = ({ setResults }) => {
         style={styles.container}
       >
         <View style={styles.titleSection}>
-          <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
+          <TouchableOpacity onPress={goBack}>
             <Image source={LeftArrowIcon} style={styles.leftArrowIcon} />
           </TouchableOpacity>
           <View style={styles.titleItem}>
-            <Text style={styles.text}>Election Results</Text>
-            <Text style={styles.subtitle}>102,912 Votes</Text>
+            <Text style={styles.text}>{title}</Text>
+            <Text style={styles.subtitle}>{subtitle}</Text>
           </View>
           <TouchableOpacity onPress={toggleDrawer}>
             <Image source={hamburger} style={styles.hamburger} />
@@ -101,15 +104,13 @@ const SearchBox = ({ setResults }) => {
                 <Text style={styles.profileName}>Collins Imboha</Text>
                 <Text style={styles.profileEmail}>ashfaksayem@gmail.com</Text>
                 <ScrollView>
-                  <TouchableOpacity style={styles.drawerItem}>
+                  <TouchableOpacity style={styles.drawerItem} onPress={() => navigation.navigate('PWDs')}>
                     <Image source={require('../assets/wheelchair.png')} style={styles.drawerItemIcon} />
                     <Text style={styles.drawerItemText}>PWDs</Text>
-                    {/* <View style={styles.drawerItemBadge}><Text style={styles.drawerItemBadgeText}>2</Text></View> */}
                   </TouchableOpacity>
                   <TouchableOpacity style={styles.drawerItem}>
                     <Image source={require('../assets/scholarship.png')} style={styles.drawerItemIcon} />
                     <Text style={styles.drawerItemText}>Scholarship & Bursary</Text>
-                    {/* <View style={[styles.drawerItemBadge, { backgroundColor: '#FF6F61' }]}><Text style={styles.drawerItemBadgeText}>2</Text></View> */}
                   </TouchableOpacity>
                   <TouchableOpacity style={styles.drawerItem}>
                     <Image source={require('../assets/jobs.png')} style={styles.drawerItemIcon} />
@@ -122,7 +123,6 @@ const SearchBox = ({ setResults }) => {
                   <TouchableOpacity style={styles.drawerItem}>
                     <Image source={require('../assets/groups.png')} style={styles.drawerItemIcon} />
                     <Text style={styles.drawerItemText}>Groups</Text>
-                    {/* <View style={styles.drawerItemBadge}><Text style={styles.drawerItemBadgeText}>2</Text></View> */}
                   </TouchableOpacity>
                   <TouchableOpacity style={styles.drawerItem}>
                     <Image source={require('../assets/churches.png')} style={styles.drawerItemIcon} />
@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
     height: 40,
     marginLeft: -40,
     borderRadius: Border.br_7xs,
-    backgroundColor: '#2E86C1',
+    backgroundColor: '#00C9CA',
   },
   searchIcon: {
     width: 20,

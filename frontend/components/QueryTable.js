@@ -1,37 +1,31 @@
 import React from 'react';
-import { StyleSheet, ScrollView, View, Text } from 'react-native';
+import { StyleSheet, ScrollView, View, Text, Dimensions } from 'react-native';
 
-const QueryTable = ({ results }) => {
-  const headers = [
-    'Polling Centre',
-    'Hon. Siyoi',
-    'Reg. Voters',
-    'Hon. Khatundi',
-    'Hon. Nakhumicha',
-  ];
-
+const QueryTable = ({ headers, results }) => {
   // Prepare tableBody from results received
   const tableBody = results.map((result, index) => (
     <View key={index} style={styles.row}>
-      <Text style={styles.cell}>{result.Polling_Centre_Name}</Text>
-      <Text style={styles.cell}>{result.Siyoi_Lillian}</Text>
-      <Text style={styles.cell}>{result.Reg_Voters}</Text>
-      <Text style={styles.cell}>{result.Khatundi_Phanice}</Text>
-      <Text style={styles.cell}>{result.Nakhumicha_Susan}</Text>
+      {headers.map((header, idx) => (
+        <Text key={idx} style={styles.cell}>{result[header]}</Text>
+      ))}
     </View>
   ));
 
   return (
     <View style={styles.container}>
-      <View style={styles.headerContainer}>
-        {headers.map((header, index) => (
-          <View key={index} style={styles.header}>
-            <Text style={styles.headerText}>{header}</Text>
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        <View>
+          <View style={styles.headerContainer}>
+            {headers.map((header, index) => (
+              <View key={index} style={styles.header}>
+                <Text style={styles.headerText}>{header}</Text>
+              </View>
+            ))}
           </View>
-        ))}
-      </View>
-      <ScrollView style={styles.scrollView}>
-        {tableBody}
+          <ScrollView style={styles.scrollView}>
+            {tableBody}
+          </ScrollView>
+        </View>
       </ScrollView>
     </View>
   );
@@ -40,42 +34,48 @@ const QueryTable = ({ results }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 0,
-    paddingTop:10,
+    padding: 5,
     borderColor: 'gray',
     borderRadius: 5,
+    borderWidth: 1,
+    margin: 0,
   },
   headerContainer: {
     flexDirection: 'row',
     backgroundColor: 'green',
+    borderTopLeftRadius: 5,
+    borderTopRightRadius: 5,
   },
   header: {
     flex: 1,
-    padding: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 5,
     borderRightWidth: 1,
     borderRightColor: 'white',
+    width:100,
   },
   headerText: {
     color: 'white',
-    fontSize: 10,
+    fontSize: 12,
     fontWeight: 'bold',
     textAlign: 'center',
   },
   scrollView: {
+    maxHeight: Dimensions.get('window').height / 2, // Adjust the max height as needed
     flexGrow: 1,
   },
   row: {
     flexDirection: 'row',
     borderBottomWidth: 1,
     borderBottomColor: 'gray',
-    padding: 10,
   },
   cell: {
     flex: 1,
-    fontSize: 13,
-    color: 'black',
+    paddingVertical: 10,
+    paddingHorizontal: 5,
+    fontSize: 11,
     textAlign: 'center',
-    paddingVertical: 5,
+    width:80,
   },
 });
 

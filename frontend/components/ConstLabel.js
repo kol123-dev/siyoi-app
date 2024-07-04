@@ -1,9 +1,8 @@
 import * as React from "react";
-import { Image } from "expo-image";
-import { StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { FontSize, Border, FontFamily, Color } from "../GlobalStyles";
 
-const ConstLabel = () => {
+const ConstLabel = ({ item_sum1, constituency, percent, onAddPress }) => {
   return (
     <View style={styles.constLayout}>
       <Image
@@ -11,15 +10,17 @@ const ConstLabel = () => {
         contentFit="cover"
         source={require("../assets/rectangle-162.png")}
       />
-      <Image
-        style={styles.addIcon}
-        contentFit="cover"
-        source={require("../assets/add1.png")}
-      />
+      <TouchableOpacity onPress={onAddPress}>
+        <Image
+          style={styles.addIcon}
+          contentFit="cover"
+          source={require("../assets/add1.png")}
+        />
+      </TouchableOpacity>
       <View style={styles.nabungJangImahDekParent}>
-        <Text style={styles.nabungJangImah}>Hon. Siyoi - 74,000 Votes</Text>
+        <Text style={styles.nabungJangImah}>Hon. Siyoi - {item_sum1} Votes</Text>
         <Text style={[styles.kimininiConstituency, styles.textTypo]}>
-          Kiminini Constituency
+          {constituency}
         </Text>
       </View>
       <View style={styles.ovalParent}>
@@ -28,7 +29,7 @@ const ConstLabel = () => {
           contentFit="cover"
           source={require("../assets/oval.png")}
         />
-        <Text style={[styles.text, styles.textTypo]}>92%</Text>
+        <Text style={[styles.text, styles.textTypo]}>{percent}</Text>
         <Image
           style={styles.ovalIcon}
           contentFit="cover"
@@ -64,7 +65,7 @@ const styles = StyleSheet.create({
   },
   nabungJangImah: {
     marginTop: 1,
-    width: "90.92%",
+    width: "95.92%",
     fontSize: FontSize.smallSmall2_size,
     fontFamily: FontFamily.nunitoSans12ptRegular,
     color: Color.colorGray_200,
@@ -79,7 +80,7 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     fontFamily: FontFamily.dMSansBold,
     color: Color.colorMidnightblue_200,
-    width: 155,
+    width: 170,
     height: 19,
     left: 0,
   },

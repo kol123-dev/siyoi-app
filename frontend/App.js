@@ -9,6 +9,7 @@ import ForgotPassword from "./screens/ForgotPassword";
 import Successfully from "./screens/Successfully";
 import CheckYourEmail from "./screens/CheckYourEmail";
 import Iebc from "./screens/Iebc";
+import PWDs from "./screens/PWDs";
 import BarChart from "./components/BarChart";
 import NavigationBar from "./components/NavigationBar";
 import TagsGroup from "./components/TagsGroup";
@@ -78,6 +79,11 @@ const App = () => {
             <Stack.Screen
               name="Iebc"
               component={Iebc}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="PWDs"
+              component={PWDs}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>

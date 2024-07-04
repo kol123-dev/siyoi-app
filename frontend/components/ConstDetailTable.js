@@ -1,22 +1,41 @@
 import * as React from "react";
 import { Image } from "expo-image";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { FontFamily, FontSize, Padding, Color, Border } from "../GlobalStyles";
 
-const ConstDetailTable = () => {
+const ConstDetailTable = ({
+  const_stats, 
+  constituency,
+  item_sum1, 
+  item_sum2, 
+  item_sum3, 
+  item_sum4, 
+  totalvotes, 
+  avatarIcon,  
+  avatarIcon1,  
+  avatarIcon2,  
+  avatarIcon3,  
+  avatarIcon4,
+  item_name1,
+  item_name2,
+  item_name3,
+  item_name4,   
+  onAddPress }) => {
   return (
     <View style={styles.constDetailTable}>
       <View style={styles.title}>
-        <Image
-          style={styles.addIcon}
-          contentFit="cover"
-          source={require("../assets/add.png")}
-        />
-        <Text style={styles.registeredVoters}>Registered Voters : 40,000</Text>
+      <TouchableOpacity onPress={onAddPress}>
+          <Image
+            style={styles.addIcon}
+            contentFit="cover"
+            source={require("../assets/add.png")}
+          />
+        </TouchableOpacity>
+
+        <Text style={styles.registeredVoters}>{const_stats}</Text>
         <Text
-          style={[styles.kimininiConstituency, styles.totalVotesCastedTypo]}
-        >
-          Kiminini Constituency
+          style={[styles.kimininiConstituency, styles.totalVotesCastedTypo]}>
+          {constituency}
         </Text>
         <Image
           style={styles.iconAboutMe}
@@ -26,202 +45,126 @@ const ConstDetailTable = () => {
       </View>
       <View style={styles.rowStylesParent}>
         <View style={[styles.rowStyles, styles.rowBorder]}>
-          <View style={styles.checkbox}>
-            <View style={[styles.background, styles.backgroundPosition]} />
-          </View>
+          
           <View style={styles.gridStyles}>
             <View style={[styles.cells, styles.cellsLayout]}>
               <View style={[styles.lockup, styles.lockupSpaceBlock]}>
                 <Image
                   style={styles.avatarIcon}
                   contentFit="cover"
-                  source={require("../assets/avatar1.png")}
+                  source={avatarIcon1}
                 />
                 <View style={styles.neilParent}>
                   <Text style={[styles.neil, styles.neilFlexBox]}>
-                    Hon. Siyoi
+                    {item_name1}
                   </Text>
-                  <Text style={styles.iNeglectedTo} numberOfLines={1}>
-                    I neglected to mention that I definitely won’t be coming to
-                    the party on Saturday
-                  </Text>
+                  
                 </View>
               </View>
             </View>
-            <View style={[styles.cells1, styles.lockupSpaceBlock]}>
-              <View style={styles.pills}>
-                <Text style={styles.pills1}>Onsite</Text>
-              </View>
-              <View style={[styles.pills2, styles.pillsFlexBox]}>
-                <Text style={styles.pills1}>Title</Text>
-              </View>
-            </View>
+            
             <View style={[styles.cells2, styles.lockupSpaceBlock]}>
               <View style={styles.textFlexBox}>
                 <Text style={[styles.value, styles.valueFlexBox]}>
-                  20,000 votes
+                  {item_sum1}
                 </Text>
               </View>
             </View>
-            <View style={[styles.cells3, styles.lockupSpaceBlock]}>
-              <View style={styles.textFlexBox}>
-                <Text style={[styles.value1, styles.valueFlexBox]}>
-                  Details
-                </Text>
-              </View>
-            </View>
-          </View>
-        </View>
-        <View style={[styles.rowStyles1, styles.textFlexBox]}>
-          <View style={styles.checkbox}>
-            <View style={[styles.background1, styles.backgroundPosition]} />
-          </View>
-          <View style={styles.gridStyles}>
-            <View style={[styles.cells, styles.cellsLayout]}>
-              <View style={[styles.lockup1, styles.lockupSpaceBlock]}>
-                <Image
-                  style={styles.avatarIcon}
-                  contentFit="cover"
-                  source={require("../assets/avatar2.png")}
-                />
-                <View style={styles.neilParent}>
-                  <Text style={[styles.neil, styles.neilFlexBox]}>
-                    Hon.Khatundi
-                  </Text>
-                  <Text style={styles.iNeglectedTo} numberOfLines={1}>
-                    I neglected to mention that I definitely won’t be coming to
-                    the party on Saturday
-                  </Text>
-                </View>
-              </View>
-            </View>
-            <View style={[styles.cells1, styles.lockupSpaceBlock]}>
-              <View style={styles.pillsFlexBox}>
-                <Text style={styles.pills1}>Remote</Text>
-              </View>
-              <View style={[styles.pills2, styles.pillsFlexBox]}>
-                <Text style={styles.pills1}>Title</Text>
-              </View>
-            </View>
-            <View style={[styles.cells6, styles.lockupSpaceBlock]}>
-              <View style={styles.textFlexBox}>
-                <Text style={[styles.value, styles.valueFlexBox]}>
-                  18,000 votes
-                </Text>
-              </View>
-            </View>
-            <View style={[styles.cells3, styles.lockupSpaceBlock]}>
-              <View style={styles.textFlexBox}>
-                <Text style={[styles.value1, styles.valueFlexBox]}>
-                  Details
-                </Text>
-              </View>
-            </View>
+           
           </View>
         </View>
         <View style={[styles.rowStyles, styles.rowBorder]}>
-          <View style={styles.checkbox}>
-            <View style={[styles.background2, styles.backgroundPosition]} />
-            <Image
-              style={styles.icon}
-              contentFit="cover"
-              source={require("../assets/icon.png")}
-            />
-          </View>
+          
           <View style={styles.gridStyles}>
             <View style={[styles.cells, styles.cellsLayout]}>
-              <View style={[styles.lockup1, styles.lockupSpaceBlock]}>
+              <View style={[styles.lockup, styles.lockupSpaceBlock]}>
                 <Image
                   style={styles.avatarIcon}
                   contentFit="cover"
-                  source={require("../assets/avatar3.png")}
-                />
-                <View style={styles.neilParent}>
-                  <Text style={[styles.neil2, styles.neilFlexBox]}>
-                    Hon.Nakhumicha
-                  </Text>
-                  <Text style={styles.iNeglectedTo} numberOfLines={1}>
-                    I neglected to mention that I definitely won’t be coming to
-                    the party on Saturday
-                  </Text>
-                </View>
-              </View>
-            </View>
-            <View style={[styles.cells1, styles.lockupSpaceBlock]}>
-              <View style={styles.pills}>
-                <Text style={styles.pills1}>Onsite</Text>
-              </View>
-              <View style={[styles.pills2, styles.pillsFlexBox]}>
-                <Text style={styles.pills1}>Title</Text>
-              </View>
-            </View>
-            <View style={[styles.cells6, styles.lockupSpaceBlock]}>
-              <View style={styles.textFlexBox}>
-                <Text style={[styles.value, styles.valueFlexBox]}>
-                  16,000 votes
-                </Text>
-              </View>
-            </View>
-            <View style={[styles.cells3, styles.lockupSpaceBlock]}>
-              <View style={styles.textFlexBox}>
-                <Text style={[styles.value1, styles.valueFlexBox]}>
-                  Details
-                </Text>
-              </View>
-            </View>
-          </View>
-        </View>
-        <View style={[styles.rowStyles1, styles.textFlexBox]}>
-          <View style={styles.checkbox}>
-            <View style={[styles.background1, styles.backgroundPosition]} />
-          </View>
-          <View style={styles.gridStyles}>
-            <View style={[styles.cells, styles.cellsLayout]}>
-              <View style={[styles.lockup1, styles.lockupSpaceBlock]}>
-                <Image
-                  style={styles.avatarIcon}
-                  contentFit="cover"
-                  source={require("../assets/avatar4.png")}
+                  source={avatarIcon2}
                 />
                 <View style={styles.neilParent}>
                   <Text style={[styles.neil, styles.neilFlexBox]}>
-                    Hon.Bissau
+                    {item_name2}
                   </Text>
-                  <Text style={styles.iNeglectedTo} numberOfLines={1}>
-                    I neglected to mention that I definitely won’t be coming to
-                    the party on Saturday
-                  </Text>
+                  
                 </View>
               </View>
             </View>
-            <View style={[styles.cells1, styles.lockupSpaceBlock]}>
-              <View style={styles.pillsFlexBox}>
-                <Text style={styles.pills1}>Remote</Text>
-              </View>
-              <View style={[styles.pills2, styles.pillsFlexBox]}>
-                <Text style={styles.pills1}>Title</Text>
-              </View>
-            </View>
-            <View style={[styles.cells6, styles.lockupSpaceBlock]}>
+            
+            <View style={[styles.cells2, styles.lockupSpaceBlock]}>
               <View style={styles.textFlexBox}>
                 <Text style={[styles.value, styles.valueFlexBox]}>
-                  19,000 votes
+                  {item_sum2}
                 </Text>
               </View>
             </View>
-            <View style={[styles.cells3, styles.lockupSpaceBlock]}>
+           
+          </View>
+        </View>
+        <View style={[styles.rowStyles, styles.rowBorder]}>
+          
+          <View style={styles.gridStyles}>
+            <View style={[styles.cells, styles.cellsLayout]}>
+              <View style={[styles.lockup, styles.lockupSpaceBlock]}>
+                <Image
+                  style={styles.avatarIcon}
+                  contentFit="cover"
+                  source={avatarIcon3}
+                />
+                <View style={styles.neilParent}>
+                  <Text style={[styles.neil, styles.neilFlexBox]}>
+                    {item_name3}
+                  </Text>
+                  
+                </View>
+              </View>
+            </View>
+            
+            <View style={[styles.cells2, styles.lockupSpaceBlock]}>
               <View style={styles.textFlexBox}>
-                <Text style={[styles.value1, styles.valueFlexBox]}>
-                  Details
+                <Text style={[styles.value, styles.valueFlexBox]}>
+                  {item_sum3}
                 </Text>
               </View>
             </View>
+           
+          </View>
+        </View>
+        <View style={[styles.rowStyles, styles.rowBorder]}>
+          
+          <View style={styles.gridStyles}>
+            <View style={[styles.cells, styles.cellsLayout]}>
+              <View style={[styles.lockup, styles.lockupSpaceBlock]}>
+                <Image
+                  style={styles.avatarIcon}
+                  contentFit="cover"
+                  source={avatarIcon4}
+                />
+                <View style={styles.neilParent}>
+                  <Text style={[styles.neil, styles.neilFlexBox]}>
+                    {item_name4}
+                  </Text>
+                  
+                </View>
+              </View>
+            </View>
+            
+            <View style={[styles.cells2, styles.lockupSpaceBlock]}>
+              <View style={styles.textFlexBox}>
+                <Text style={[styles.value, styles.valueFlexBox]}>
+                  {item_sum4}
+                </Text>
+              </View>
+            </View>
+           
           </View>
         </View>
       </View>
       <Text
-        style={[styles.totalVotesCasted, styles.totalVotesCastedTypo]}
-      >{`Total Votes Casted : 36,000 `}</Text>
+        style={[styles.totalVotesCasted, styles.totalVotesCastedTypo]}>
+        {totalvotes} 
+      </Text>
     </View>
   );
 };
@@ -233,15 +176,7 @@ const styles = StyleSheet.create({
     fontSize: FontSize.footnote_size,
     textAlign: "left",
   },
-  rowBorder: {
-    paddingVertical: Padding.p_5xs,
-    paddingHorizontal: Padding.p_base,
-    height: 65,
-    borderBottomWidth: 1,
-    borderTopWidth: 1,
-    borderColor: Color.colorLightgray_100,
-    borderStyle: "solid",
-  },
+  
   backgroundPosition: {
     height: 20,
     width: 20,
@@ -261,6 +196,8 @@ const styles = StyleSheet.create({
   lockupSpaceBlock: {
     paddingVertical: 0,
     paddingHorizontal: Padding.p_5xs,
+    flex: 1,
+
   },
   neilFlexBox: {
     color: Color.colorBlack,
@@ -316,7 +253,7 @@ const styles = StyleSheet.create({
   kimininiConstituency: {
     top: 0,
     color: Color.colorMidnightblue_100,
-    width: 153,
+    width: 170,
     height: 20,
     left: 58,
     position: "absolute",
@@ -424,9 +361,15 @@ const styles = StyleSheet.create({
   },
   value: {
     color: Color.colorDarkslategray,
+    alignSelf:"center",
   },
   cells2: {
     flex: 1,
+    alignItems:"center",
+    justifyContent:"center",
+    paddingTop:46,
+    
+    
   },
   value1: {
     color: Color.pastelBlue,
@@ -437,7 +380,7 @@ const styles = StyleSheet.create({
     display: "none",
   },
   gridStyles: {
-    marginLeft: 16,
+    marginLeft: 6,
     justifyContent: "center",
     flex: 1,
     alignSelf: "stretch",
@@ -447,7 +390,16 @@ const styles = StyleSheet.create({
   rowStyles: {
     alignItems: "center",
     flexDirection: "row",
-    width: 312,
+    width: "100%",
+    
+      // paddingVertical: Padding.p_5xs,
+      // paddingHorizontal: Padding.p_base,
+      height: 65,
+      borderBottomWidth: 1,
+      borderTopWidth: 1,
+      borderColor: Color.colorLightgray_100,
+      borderStyle: "solid",
+    
   },
   background1: {
     borderColor: Color.colorGainsboro_100,

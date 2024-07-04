@@ -25,7 +25,7 @@ const NavigationBar = ({
         {title && (
           <View style={[styles.titleItem, styles.titleFlexBox]}>
             <View style={styles.headlineFlexBox}>
-              <Text style={styles.text}>Hello Imboha,</Text>
+              <Text style={styles.text}>Hello Kariuki,</Text>
               <Image
                 style={styles.disclosureIcon}
                 contentFit="cover"
